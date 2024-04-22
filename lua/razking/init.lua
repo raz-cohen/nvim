@@ -1,2 +1,3 @@
 require("razking.remap")
-print("Hello from king")
+
+require("razking.set")

@@ -42,5 +42,18 @@ return require('packer').startup(function(use)
 			{'L3MON4D3/LuaSnip'},
 		}
 	}
+
+	use {
+		"williamboman/mason.nvim",
+		"williamboman/mason-lspconfig.nvim",
+		"neovim/nvim-lspconfig",
+	}
+
+    use {
+        'tanvirtin/vgit.nvim',
+        requires = {
+            'nvim-lua/plenary.nvim'
+        }
+    }
 end)
 

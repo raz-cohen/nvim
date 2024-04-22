@@ -1,12 +1,22 @@
 local lsp = require("lsp-zero")
+local mason = require("mason")
+local masonLSP = require("mason-lspconfig")
+
+mason.setup({})
+masonLSP.setup({
+	ensure_installed = {
+		'tsserver',
+		'eslint',
+	},
+	handlers = {
+		function(server_name)
+			require("lspconfig")[server_name].setup({})
+		end
+	}
+})
+
 
 lsp.preset("recommended")
-
-lsp.ensure_installed({
-	'tsserver',
-	'eslint',
-	'sumneko_lua',
-})
 
 local cmp = require("cmp")
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
@@ -16,17 +26,23 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
 	['<C-y>'] = cmp.mapping.confirm({ select = true }),
 	['<C-Space>'] = cmp.mapping.complete(),
 })
+local cmp_format = lsp.cmp_format({details = true})
+
+cmp.setup({
+	source = {
+		{name = 'nvim_lsp'},
+		{name = 'buffer'},
+	},
+	formatting = cmp_format,
+	mapping = cmp_mappings,
+})
 
 lsp.set_preferences({
 	sign_icons = {}
 })
 
-lsp.setup_nvim_cmp({
-	mapping = cmp_mappings
-})
 
 lsp.on_attach(function(client, bufnr)
-	print("help")
 	local opts = {buffer = bufnr, remap = fale}
 
 	vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
