@@ -145,11 +145,6 @@ _G.packer_plugins = {
     path = "C:\\Users\\USER\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\undotree",
     url = "https://github.com/mbbill/undotree"
   },
-  ["vgit.nvim"] = {
-    loaded = true,
-    path = "C:\\Users\\USER\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\vgit.nvim",
-    url = "https://github.com/tanvirtin/vgit.nvim"
-  },
   ["vim-fugitive"] = {
     loaded = true,
     path = "C:\\Users\\USER\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\vim-fugitive",

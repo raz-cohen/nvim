@@ -49,11 +49,5 @@ return require('packer').startup(function(use)
 		"neovim/nvim-lspconfig",
 	}
 
-    use {
-        'tanvirtin/vgit.nvim',
-        requires = {
-            'nvim-lua/plenary.nvim'
-        }
-    }
 end)
 
