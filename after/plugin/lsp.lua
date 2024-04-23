@@ -1,4 +1,4 @@
-local lsp = require("lsp-zero")
+local lsp_zero = require("lsp-zero")
 local mason = require("mason")
 local masonLSP = require("mason-lspconfig")
 
@@ -16,15 +16,18 @@ masonLSP.setup({
 })
 
 
-lsp.preset("recommended")
+lsp_zero.preset("recommended")
 
-lsp.set_preferences({
+lsp_zero.set_preferences({
 	sign_icons = {}
 })
 
 
-lsp.on_attach(function(client, bufnr)
-  lsp.default_keymaps({buffer = bufnr})
+lsp_zero.on_attach(function(client, bufnr)
+    lsp_zero.default_keymaps({
+        buffer = bufnr,
+        preserve_mappings = false
+    })
 end)
 
-lsp.setup()
+lsp_zero.setup()
