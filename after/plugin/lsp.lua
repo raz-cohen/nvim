@@ -28,6 +28,26 @@ lsp_zero.on_attach(function(client, bufnr)
         buffer = bufnr,
         preserve_mappings = false
     })
+
+    vim.api.nvim_create_autocmd('CursorHold', {
+        buffer = bufnr,
+        callback = function()
+            vim.lsp.buf.document_highlight()
+        end,
+    })
+    vim.api.nvim_create_autocmd('CursorHoldI', {
+        buffer = bufnr,
+        callback = function()
+            vim.lsp.buf.document_highlight()
+        end,
+    })
+    vim.api.nvim_create_autocmd('CursorMoved', {
+        buffer = bufnr,
+        callback = function()
+            vim.lsp.buf.clear_references()
+        end,
+    })
+
 end)
 
 lsp_zero.setup()
