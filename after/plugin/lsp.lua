@@ -29,28 +29,57 @@ lsp_zero.on_attach(function(client, bufnr)
         preserve_mappings = false
     })
 
-    local cap = client.resolved_capabilities
-    if cap ~= nil and cap.document_highlight then
-        vim.api.nvim_create_autocmd('CursorHold', {
-            buffer = bufnr,
-            callback = function()
-                vim.lsp.buf.document_highlight()
-            end,
-        })
-        vim.api.nvim_create_autocmd('CursorHoldI', {
-            buffer = bufnr,
-            callback = function()
-                vim.lsp.buf.document_highlight()
-            end,
-        })
-        vim.api.nvim_create_autocmd('CursorMoved', {
-            buffer = bufnr,
-            callback = function()
-                vim.lsp.buf.clear_references()
-            end,
-        })
-    end
+    if client.server_capabilities.documentHighlightProvider then
+        local highlight_references = function()
+            vim.lsp.buf.document_highlight()
+        end
 
+        local clear_references = function()
+            vim.lsp.buf.clear_references()
+        end
+
+        local function setup_autocmds()
+            vim.api.nvim_create_autocmd('CursorMoved', {
+                buffer = bufnr,
+                callback = function()
+                    highlight_references()
+                end,
+                desc = 'LSP Document Highlight on CursorMoved'
+            })
+            vim.api.nvim_create_autocmd('CursorMovedI', {
+                buffer = bufnr,
+                callback = function()
+                    highlight_references()
+                end,
+                desc = 'LSP Document Highlight on CursorMovedI'
+            })
+            vim.api.nvim_create_autocmd('InsertLeave', {
+                buffer = bufnr,
+                callback = function()
+                    clear_references()
+                end,
+                desc = 'LSP Clear References on InsertLeave'
+            })
+            vim.api.nvim_create_autocmd('CursorMoved', {
+                buffer = bufnr,
+                callback = function()
+                    clear_references()
+                end,
+                desc = 'LSP Clear References on CursorMoved'
+            })
+            vim.api.nvim_create_autocmd('CursorMovedI', {
+                buffer = bufnr,
+                callback = function()
+                    clear_references()
+                end,
+                desc = 'LSP Clear References on CursorMovedI'
+            })
+        end
+
+        setup_autocmds()
+    end
 end)
+
+
 
 lsp_zero.setup()
