@@ -24,5 +24,5 @@ vim.keymap.set('n', '<leader>ps', function()
 end)
 
 vim.keymap.set('n', '<leader>fg', function() 
-    telescope.extensions.live_grep_args.live_grep_args()
+    builtin.live_grep()
 end)
