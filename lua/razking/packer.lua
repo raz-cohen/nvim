@@ -55,6 +55,15 @@ return require('packer').startup(function(use)
 
     use('mattkubej/jest.nvim')
 
+    use {
+        'CopilotC-Nvim/CopilotChat.nvim',
+        branch = 'canary',
+        dependencies = {
+            {'github/copilot.vim'},
+            {'nvim-lua/plenary.nvim'},
+        },
+    }
+
     use('mfussenegger/nvim-dap')
     use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" } }
     use('leoluz/nvim-dap-go')
