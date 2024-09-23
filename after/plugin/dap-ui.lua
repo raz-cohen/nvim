@@ -33,22 +33,22 @@ dapui.setup({
         {
             elements = {
                 -- Elements can be strings or table with id and size keys.
-                { id = "scopes", size = 0.25 },
                 "breakpoints",
                 "stacks",
                 "watches",
+                "repl",
+                "console",
             },
             size = 40, -- 40 columns
             position = "left",
         },
         {
             elements = {
-                "repl",
-                "console",
+                "scopes",
             },
-            size = 0.25, -- 25% of total lines
             position = "bottom",
-        },
+            size = 10,
+        }
     },
     controls = {
         -- Requires Neovim nightly (or 0.8 when released)
@@ -67,8 +67,8 @@ dapui.setup({
         },
     },
     floating = {
-        max_height = nil, -- These can be integers or a float between 0 and 1.
-        max_width = nil, -- Floats will be treated as percentage of your screen.
+        max_height = nil,  -- These can be integers or a float between 0 and 1.
+        max_width = nil,   -- Floats will be treated as percentage of your screen.
         border = "single", -- Border style. Can be "single", "double" or "rounded"
         mappings = {
             close = { "q", "<Esc>" },
@@ -92,6 +92,6 @@ dap.listeners.before.event_exited["dapui_config"] = function()
     dapui.close()
 end
 
-vim.keymap.set('n', '<leader>do', function() dapui.open() end, { noremap = true })  -- Open DAP UI
-vim.keymap.set('n', '<leader>dc', function() dapui.close() end, { noremap = true }) -- Close DAP UI
+vim.keymap.set('n', '<leader>do', function() dapui.open() end, { noremap = true })   -- Open DAP UI
+vim.keymap.set('n', '<leader>dc', function() dapui.close() end, { noremap = true })  -- Close DAP UI
 vim.keymap.set('n', '<leader>dt', function() dapui.toggle() end, { noremap = true }) -- Toggle DAP UI
