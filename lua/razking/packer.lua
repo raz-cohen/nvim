@@ -60,4 +60,9 @@ return require('packer').startup(function(use)
     use('mfussenegger/nvim-dap')
     use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" } }
     use('leoluz/nvim-dap-go')
+
+    use({
+        'MeanderingProgrammer/render-markdown.nvim',
+        after = { 'nvim-treesitter' },
+    })
 end)
