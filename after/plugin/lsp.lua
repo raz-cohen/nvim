@@ -115,6 +115,8 @@ lsp_zero.on_attach(function(client, bufnr)
     end
 end)
 
-
-
 lsp_zero.setup()
+
+vim.keymap.set("n", "<leader>ca", function () vim.lsp.buf.code_action() end , { noremap = true, desc = "LSP Code Action" })
+
+
