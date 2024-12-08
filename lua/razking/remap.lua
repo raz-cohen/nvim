@@ -52,3 +52,16 @@ vim.keymap.set("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>");
 vim.keymap.set("n", "<leader><leader>", function()
     vim.cmd("so")
 end)
+
+-- Tabs
+-- Map <Esc> in terminal mode to exit to normal mode
+vim.keymap.set("t", "<Esc>", "<C-\\><C-n>", { noremap = true, silent = true })
+-- Map <leader>tn in normal mode to open a new tab
+vim.keymap.set("n", "<leader>tn", function() vim.cmd("tabnew") end)
+-- Map <leader>tc in normal mode to close the current tab
+vim.keymap.set("n", "<leader>tc", function() vim.cmd("tabclose") end)
+-- Map <C-a> in normal mode to prompt for a tab number and switch to that tab
+vim.keymap.set("n", "<C-a>", function()
+    local tab_number = vim.fn.input("Tab number: ")
+    vim.cmd(tab_number .. "tabnext")
+end)
