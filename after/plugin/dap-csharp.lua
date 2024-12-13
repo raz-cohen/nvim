@@ -5,7 +5,8 @@ vim.cmd('set noshellslash')
 
 dap.adapters.coreclr = {
     type = 'executable',
-    command = os.getenv('USERPROFILE') .. '/scoop/apps/netcoredbg/current/netcoredbg.exe',
+    -- TODO: Make an ignored conf file to be changed per machine.
+    --command = os.getenv('USERPROFILE') .. '/scoop/apps/netcoredbg/current/netcoredbg.exe',
     args = { '--interpreter=vscode' }
 }
 
